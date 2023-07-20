@@ -2,86 +2,171 @@
 //  findyourstyle.swift
 //  QuizMenu
 //
-//  Created by scholar on 7/19/23.
+//  Created by scholar on 7/20/23.
 //
 
 import SwiftUI
 
 struct findyourstyle: View {
-    @State private var streetstyle = false
+    
+    @State private var streetStyle = false
+    @State private var cottageCore = false
+    @State private var gothic = false
+    
     var body: some View {
         ZStack {
+            Image("findurstyle 1")
+                .resizable(resizingMode: .stretch)
+                .ignoresSafeArea()
+            
             VStack {
+                Spacer()
                 Button(action: {
                                     
                                     withAnimation(.linear(duration: 1)) {
                                         
-                                        self.streetstyle = true
-                                        
+                                        self.streetStyle = true
+                                        self.cottageCore = false
+                                        self.gothic = false
+
                                     }
                                     
                                     }, label: {
-                                    Text("streetstyle image")
-                                })
-            }
-
-            if $streetstyle.wrappedValue {
+                                    Image("streetstyle")
+                                }) // street style button
                 
-                popUpView1()
+                Button(action: {
+                                    
+                                    withAnimation(.linear(duration: 1)) {
+                                        
+                                        self.streetStyle = false
+                                        self.cottageCore = true
+                                        self.gothic = false
+
+                                    }
+                                    
+                                    }, label: {
+                                    Image("cottagecore")
+                                }) //cottage core button
+                
+                Button(action: {
+                                    
+                                    withAnimation(.linear(duration: 1)) {
+                                        
+                                        self.streetStyle = false
+                                        self.cottageCore = false
+                                        self.gothic = true
+
+                                    }
+                                    
+                                    }, label: {
+                                    Image("gothic")
+                                }) //gothic button
+                
+            } // end of Vstack
+            
+            if $streetStyle.wrappedValue {
+                streetStylePopUp()
             }
+            if $cottageCore.wrappedValue {
+                cottageCorePopUp()
+            }
+            if $gothic.wrappedValue {
+                gothicPopUp()
+            }
+            
+        } // end of Zstack
+    } // end of body
+    
+    private func streetStylePopUp() -> some View {
+            
+            VStack (spacing : 10) {
+                
+                Image("SBstreet 1")
+                    .resizable()
+                
+                
+                Button(action: {
+                    
+                    withAnimation {
+              
+                        self.streetStyle = false
+                        
+                    }
+                }, label: {
+                    Text("Close")
+                })
+                .padding(5).background(Color(hex: "#0FBB8A"))
+                .foregroundColor(Color.white)
+                .cornerRadius(5).shadow(radius: 5)
+                
+            }
+            .padding()
+            .frame(width: 300, height: 200)
+            .background(Color(hex: "#0FBB8A"))
+            .cornerRadius(20)
+            .shadow(radius: 20)
         }
-    }
-    private func popUpView1() -> some View {
-        ZStack () {
-          VStack {
-            Button(action: {
-              withAnimation {
-                self.streetstyle = false
-              }
-            }, label: {
-              HStack {
-            Spacer()
+
+    private func cottageCorePopUp() -> some View {
+            
+            VStack (spacing : 10) {
                 
-                  Text("X")
-
-                  //                  .resizable()
-//                  .aspectRatio(contentMode: .fit)
-//                  .padding(.leading, 0.0)
-//                  .frame(width: 30, height: 30)
-              }//Hstack
-            })
-              Text("insert image")
-
-//               .resizable()
-//               .aspectRatio(contentMode: .fit)
-//               .cornerRadius(15)
-//            Text(“Hayes Valley Community Tree Planting”)
-//              .font(.title)
-//               .fontWeight(.bold)
-//               .multilineTextAlignment(.center)
-//               .padding(1)
-//            VStack(alignment: .leading){
-//              Text(“Collaborate with other volunteers to plant 5 new sidewalk trees, helping to expand tree canopy coverage and its benefit trees to the community!. No experience is necessary, just a willingness to get your hands in the dirt! Light lunch and snacks will be provided. “)
-//                .font(.title3)
-//                .padding(1)
-//              Text(“Where: Exact location will provided by organization after sign-up, will be in the Lower Haight/Hayes Valley community”)
-//                .font(.title3)
-//                .fontWeight(.bold)
-//                .padding(1)
-//              Text(“When: Saturday August 19th from 9 am to 12:30 pm”)
-//                .font(.title3)
-//                .fontWeight(.bold)
+                Image("SBstreet 1")
+                
+                
+                Button(action: {
+                    
+                    withAnimation {
+              
+                        self.cottageCore = false
+                        
+                    }
+                }, label: {
+                    Text("Close")
+                })
+                .padding(5).background(Color.blue)
+                .foregroundColor(Color.white)
+                .cornerRadius(5).shadow(radius: 5)
+                
             }
-            .padding(10)
-          }//Vstack
-          .padding()
-          .background(Rectangle()
-            .foregroundColor(.black))
-          .cornerRadius(15)
-          .shadow(radius: 15)
-          .padding()
-        }//ZStack
-      }//privatefuncviewforparkClean
+            .padding()
+            .frame(width: 300, height: 200)
+            .background(Color(hex: "#0FBB8A"))
+            .cornerRadius(20)
+            .shadow(radius: 20)
+        }
+    
+    private func gothicPopUp() -> some View {
+        
+        VStack (spacing : 10) {
+            
+            Image("SBstreet 1")
+            
+            
+            Button(action: {
+                
+                withAnimation {
+                    
+                    self.gothic = false
+                    
+                }
+            }, label: {
+                Text("Close")
+            })
+            .padding(5).background(Color.blue)
+            .foregroundColor(Color.white)
+            .cornerRadius(5).shadow(radius: 5)
+            
+        }
+        .padding()
+        .frame(width: 300, height: 200)
+        .background(Color(hex: "#0FBB8A"))
+        .cornerRadius(20)
+        .shadow(radius: 20)
+    }
+    
+} // end of struct
 
 struct findyourstyle_Previews: PreviewProvider {
     static var previews: some View {
